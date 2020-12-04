@@ -1,24 +1,29 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Input = () => {
+  const dispatch = useDispatch();
+  const destinations = useSelector((state) => state.destinations);
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    const value = event.target[0].value;
+    dispatch({ type: "ADD_DESTINATION", payload: value });
+  };
   return (
     <React.Fragment>
-      <form class="ui form">
+      <form onSubmit={onFormSubmit} class="ui form">
         <div class="field">
           <label>Destination</label>
           <input
             type="text"
-            name="first-name"
+            name="destination"
             placeholder="Add your destination"
           ></input>
         </div>
-        <button class="ui button" type="submit">
-          Add
-        </button>
+        <button class="ui button">Add</button>
       </form>
     </React.Fragment>
   );
 };
 
-export default connect()(Input);
+export default Input;
