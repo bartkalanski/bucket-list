@@ -9,18 +9,22 @@ const List = () => {
     event.preventDefault();
     dispatch({ type: "REMOVE_DESTINATION", payload: event.target.id });
   };
-  if (destinations !== undefined) {
+  if (destinations) {
     return (
       <React.Fragment>
         {destinations.map((destination, index) => (
-          <div class="ui middle aligned divided list">
-            <div class="item">
-              <div class="right floated content">
-                <button onClick={onButtonClick} id={index} class="ui button">
+          <div className="ui middle aligned divided list">
+            <div className="item">
+              <div className="right floated content">
+                <button
+                  onClick={onButtonClick}
+                  id={index}
+                  className="ui red button"
+                >
                   Remove
                 </button>
               </div>
-              <div class="content">{destination.destination}</div>
+              <div className="ui header">{destination.destination}</div>
             </div>
           </div>
         ))}

@@ -1,8 +1,8 @@
 const initState = {
   destinations: [
-    { destination: "Bali" },
-    { destination: "Amazon" },
-    { destination: "Berghain" },
+    { destination: "Peru" },
+    { destination: "Philippines" },
+    { destination: "India" },
   ],
 };
 
@@ -13,12 +13,11 @@ const rootReducer = (state = initState, { type, payload }) => {
     };
   }
   if (type === "REMOVE_DESTINATION") {
-    console.log(state.destinations);
-    console.log(payload);
-
-    return state.destinations.filter(
-      (item) => state.destinations.indexOf(item) === payload
-    );
+    return {
+      destinations: state.destinations.filter(
+        (item) => state.destinations.indexOf(item) != payload
+      ),
+    };
   }
 
   return state;

@@ -11,8 +11,8 @@ const Input = () => {
   };
   return (
     <React.Fragment>
-      <form onSubmit={onFormSubmit} class="ui form">
-        <div class="field">
+      <form onSubmit={onFormSubmit} className="ui form">
+        <div className="field">
           <label>Destination</label>
           <input
             type="text"
@@ -20,7 +20,7 @@ const Input = () => {
             placeholder="Add your destination"
           ></input>
         </div>
-        <button class="ui button">Add</button>
+        <button className="ui blue button">Add</button>
       </form>
     </React.Fragment>
   );
