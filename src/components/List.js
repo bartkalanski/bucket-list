@@ -24,7 +24,7 @@ const List = () => {
                   Remove
                 </button>
               </div>
-              <div className="ui header">{destination.destination}</div>
+        <div className="ui header">{index + 1}. {destination.destination}</div>
             </div>
           </div>
         ))}
