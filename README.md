@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Bucket List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an app I built using  React Hooks, Redux and Semantic UI.
+Here is the live link -> https://barts-bucket-list.netlify.app/
 
 ## Available Scripts
 
