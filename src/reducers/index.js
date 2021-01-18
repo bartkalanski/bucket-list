@@ -1,3 +1,5 @@
+import { ADD_DESTINATION, REMOVE_DESTINATION } from "../actions/types";
+
 const initState = {
   destinations: [
     { destination: "Peru" },
@@ -7,20 +9,20 @@ const initState = {
 };
 
 const rootReducer = (state = initState, { type, payload }) => {
-  if (type === "ADD_DESTINATION") {
-    return {
-      destinations: [...state.destinations, { destination: payload }],
-    };
+  switch (type) {
+    case ADD_DESTINATION:
+      return {
+        destinations: [...state.destinations, { destination: payload }],
+      };
+    case REMOVE_DESTINATION:
+      return {
+        destinations: state.destinations.filter(
+          (item) => state.destinations.indexOf(item) != payload
+        ),
+      };
+    default:
+      return state;
   }
-  if (type === "REMOVE_DESTINATION") {
-    return {
-      destinations: state.destinations.filter(
-        (item) => state.destinations.indexOf(item) != payload
-      ),
-    };
-  }
-
-  return state;
 };
 
 export default rootReducer;
