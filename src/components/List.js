@@ -1,19 +1,21 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { removeDestination } from "../actions/index";
+
 const List = () => {
-  const destinations = useSelector((state) => state.destinations);
+  const destinations = useSelector((state) => state.destinationReducer.destinations);
   const dispatch = useDispatch();
 
   const onButtonClick = (event) => {
     event.preventDefault();
-    dispatch({ type: "REMOVE_DESTINATION", payload: event.target.id });
+    removeDestination(dispatch, event.target.id);
   };
   if (destinations) {
     return (
       <React.Fragment>
         {destinations.map((destination, index) => (
-          <div className="ui middle aligned divided list">
+          <div key={index} className="ui middle aligned divided list">
             <div className="item">
               <div className="right floated content">
                 <button
@@ -24,7 +26,9 @@ const List = () => {
                   Remove
                 </button>
               </div>
-        <div className="ui header">{index + 1}. {destination.destination}</div>
+              <div className="ui header">
+                {index + 1}. {destination.destination}
+              </div>
             </div>
           </div>
         ))}

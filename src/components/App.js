@@ -1,17 +1,24 @@
-import React from 'react'
-import Input from './Input'
-import List from './List'
+import React from "react";
+import { useDispatch } from "react-redux";
+
+import { addDestination } from "../actions/index";
+import Form from "./Form";
+import List from "./List";
 
 const App = () => {
-    return (
-       <div className="ui container">
-           <div class="ui divider"></div>
-           <h1 className="ui center aligned header">Create Your Bucket List</h1>
-           <Input/>
-           <div class="ui divider"></div>
-           <List/>
-       </div>
-    )
-}
+  const dispatch = useDispatch();
+  const submit = (value) => {
+    addDestination(dispatch, value.destination);
+  };
+  return (
+    <div className="ui container">
+      <div className="ui divider"></div>
+      <h1 className="ui center aligned header">Create Your Bucket List</h1>
+      <Form onSubmit={submit} />
+      <div className="ui divider"></div>
+      <List />
+    </div>
+  );
+};
 
-export default App
+export default App;

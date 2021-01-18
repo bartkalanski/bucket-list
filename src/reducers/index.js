@@ -1,28 +1,21 @@
-import { ADD_DESTINATION, REMOVE_DESTINATION } from "../actions/types";
+import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 
-const initState = {
-  destinations: [
-    { destination: "Peru" },
-    { destination: "Philippines" },
-    { destination: "India" },
-  ],
-};
+import destinationReducer from './destinationReducer'
+import { ADD_DESTINATION } from '../actions/types'
 
-const rootReducer = (state = initState, { type, payload }) => {
-  switch (type) {
-    case ADD_DESTINATION:
-      return {
-        destinations: [...state.destinations, { destination: payload }],
-      };
-    case REMOVE_DESTINATION:
-      return {
-        destinations: state.destinations.filter(
-          (item) => state.destinations.indexOf(item) != payload
-        ),
-      };
-    default:
-      return state;
-  }
-};
+const rootReducer = combineReducers({
+    destinationReducer: destinationReducer,
+    form: formReducer.plugin({
+        destinationForm: (state, action) => { // <------ 'account' is name of form given to reduxForm()
+          switch(action.type) {
+            case ADD_DESTINATION:
+              return undefined;       // <--- blow away form data
+            default:
+              return state;
+          }
+        }
+      }),
+})
 
-export default rootReducer;
+export default rootReducer
