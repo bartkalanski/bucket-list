@@ -36,7 +36,7 @@ const SignIn = () => {
             />
           </div>
           <button class="ui button" type="submit">
-            Submit
+            LOGIN
           </button>
         </form>
       </div>
