@@ -10,7 +10,6 @@ const SignIn = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(password, email)
   };
   return (
     <div className="ui container" style={{ marginTop: "10vh" }}>
