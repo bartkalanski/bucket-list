@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { removeDestination } from "../actions/index";
+import { removeDestination } from "../../actions/index";
 
 const List = () => {
   const destinations = useSelector((state) => state.destinationReducer.destinations);

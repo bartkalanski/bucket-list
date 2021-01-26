@@ -1,23 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import { addDestination } from "../actions/index";
-import Form from "./Form";
-import List from "./List";
+import Dashboard from "./dashboard/Dashboard";
+import Header from './Header'
 
 const App = () => {
-  const dispatch = useDispatch();
-  const submit = (value) => {
-    addDestination(dispatch, value.destination);
-  };
   return (
-    <div className="ui container">
-      <div className="ui divider"></div>
-      <h1 className="ui center aligned header">Create Your Bucket List</h1>
-      <Form onSubmit={submit} />
-      <div className="ui divider"></div>
-      <List />
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Dashboard} />
+      </Switch>
+    </BrowserRouter>
   );
 };
 
