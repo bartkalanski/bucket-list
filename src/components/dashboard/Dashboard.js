@@ -1,14 +1,34 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useFirestore } from "react-redux-firebase";
 
-import { addDestination } from "../../actions/index";
+import { addDestination } from ".././../actions/index";
 import Form from "./Form";
 import List from "./List";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
+  const firestore = useFirestore();
+
+  const addNewDestination = (destinationName) => {
+    firestore
+      .collection("list")
+      .add({
+        destination: destinationName,
+      })
+      .then((docRef) => {
+        docRef.update({
+          destinationID: docRef.id,
+        });
+      });
+  };
+
   const submit = (value) => {
-    addDestination(dispatch, value.destination);
+    if (value.destination === undefined) {
+      return;
+    }
+    addNewDestination(value.destination);
+    //addDestination(dispatch, value.destination);
   };
   return (
     <div className="ui container">

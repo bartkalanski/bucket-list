@@ -8,7 +8,7 @@ const initState = {
   ],
 };
 
-const destinationReducer = (state = initState, { type, payload }) => {
+const destinationReducer = (state = initState, { type, payload, err }) => {
   switch (type) {
     case ADD_DESTINATION:
       return {
