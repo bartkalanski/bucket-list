@@ -1,8 +1,5 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-
-//import firebase from 'firebase/app'
-//import 'firebase/firestore'
 import { firebaseReducer } from "react-redux-firebase";
 import { firestoreReducer } from "redux-firestore";
 

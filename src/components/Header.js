@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux'
 
 const Header = () => {
+  
+  const authStatus = useSelector(state => console.log('state',state))
   return (
     <div className="ui container">
       <div class="ui secondary pointing menu">
