@@ -9,7 +9,7 @@ const List = () => {
   const firestore = useFirestore()
 
   useFirestoreConnect({
-    collection: `/list`,
+    collection: `/users`,
     storeAs: "list",
   });
 

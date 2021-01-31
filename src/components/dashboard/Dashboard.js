@@ -1,6 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFirestore } from "react-redux-firebase";
+import { Redirect } from 'react-router-dom'
 
 import { addDestination } from "../../actions/index";
 import Form from "./Form";
@@ -9,6 +10,7 @@ import List from "./List";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const firestore = useFirestore();
+  const auth = useSelector(state => state.firebase.auth)
 
   const submit = (value) => {
     if (value.destination === undefined) {
@@ -16,6 +18,7 @@ const Dashboard = () => {
     }
     addDestination(dispatch, value.destination, firestore);
   };
+  if(!auth.uid) return <Redirect to="/signin"/>
   return (
     <div className="ui container">
       <div className="ui divider"></div>

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Dashboard from "./dashboard/Dashboard";
-import Header from "./Header";
+import Header from "./layout/Header";
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
 
