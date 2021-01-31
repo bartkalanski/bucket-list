@@ -1,4 +1,4 @@
-import { ADD_DESTINATION, REMOVE_DESTINATION, LOGIN_SUCCESS, LOGIN_ERROR } from "./types";
+import { ADD_DESTINATION, REMOVE_DESTINATION, LOGIN_SUCCESS, LOGIN_ERROR, SIGNOUT_SUCCESS } from "./types";
 
 export const addDestination = (dispatch, value, firestore) => {
   firestore
@@ -41,5 +41,10 @@ export const signIn = (dispatch, firebase, email,password) => {
     dispatch({ type: LOGIN_SUCCESS})
   }).catch((err)=>{
     dispatch({ type: LOGIN_ERROR, err})
+  })
+}
+export const signOut = (dispatch, firebase) => {
+  firebase.auth().signOut().then(()=>{
+    dispatch({ type: SIGNOUT_SUCCESS})
   })
 }

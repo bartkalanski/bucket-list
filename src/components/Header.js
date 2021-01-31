@@ -1,10 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useFirebase } from 'react-redux-firebase'
 
+import { signOut } from '../actions/index'
 const Header = () => {
   
-  const authStatus = useSelector(state => console.log('state',state))
+  //const authStatus = useSelector(state => console.log('state',state))
+  const dispatch = useDispatch()
+  const firebase = useFirebase()
+
+  const handleSignOut = (e) => {
+    if(e) signOut(dispatch, firebase)
+  }
   return (
     <div className="ui container">
       <div class="ui secondary pointing menu">
@@ -18,7 +26,7 @@ const Header = () => {
           Sign Up
         </NavLink>
         <div class="right menu">
-          <div class="ui item">Logout</div>
+          <a onClick={handleSignOut} class="ui item">Logout</a>
         </div>
       </div>
     </div>
