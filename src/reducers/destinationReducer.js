@@ -8,12 +8,15 @@ const initState = {
   ],
 };
 
-const destinationReducer = (state = initState, { type, payload }) => {
+const destinationReducer = (state = initState, { type, payload, err }) => {
   switch (type) {
     case ADD_DESTINATION:
       return {
         destinations: [...state.destinations, { destination: payload }],
       };
+    case 'ADD_DESTINATION_ERROR':
+      console.log('create project error', err)
+      return state
     case REMOVE_DESTINATION:
       return {
         destinations: state.destinations.filter(
