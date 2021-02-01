@@ -6,15 +6,19 @@ import {
   SIGNOUT_SUCCESS,
 } from "./types";
 
-export const addDestination = (dispatch, value, firestore) => {
+export const addDestination = (dispatch, value, firestore, profile, auth) => {
   firestore
-    .collection("users")
+    .collection("list")
     .add({
       destination: value,
+      authorFirstName: profile.firstName,
+      authorLastName: profile.lastName,
+      authorId: auth.uid,
+      createdAt: new Date()
     })
     .then((docRef) => {
       docRef.update({
-        destinationID: docRef.id,
+        documentID: docRef.id,
       });
     })
     .then(() => {
