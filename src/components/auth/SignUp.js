@@ -43,7 +43,7 @@ const SignUp = () => {
               <label>Password</label>
               <input
                 onChange={handleChange}
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 placeholder="Password"
