@@ -5,11 +5,14 @@ import { Redirect } from "react-router-dom";
 
 import { signIn } from "../../actions/authActions";
 import Input from "../reuscore/Input";
+import Button from "../reuscore/Button";
 
 const SignIn = () => {
   const [formValues, setFormValues] = useState({});
   const dispatch = useDispatch();
   const firebase = useFirebase();
+  const auth = useSelector((state) => state.firebase.auth);
+  const authError = useSelector((state) => state.authReducer.authError);
 
   const handleFormValuesChange = (name, value) => {
     setFormValues({
@@ -22,8 +25,7 @@ const SignIn = () => {
     console.log(formValues);
     signIn(dispatch, firebase, formValues.email, formValues.password);
   };
-  const auth = useSelector((state) => state.firebase.auth);
-  const authError = useSelector((state) => state.authReducer.authError);
+
   if (!auth.uid)
     return (
       <div className="ui container" style={{ marginTop: "10vh" }}>
@@ -45,9 +47,7 @@ const SignIn = () => {
               name="password"
               placeholder="Password"
             />
-            <button class="ui button" type="submit">
-              LOGIN
-            </button>
+            <Button className="ui button" type="submit" name="LOGIN" />
             <div style={{ marginTop: "1rem" }}>
               {authError ? (
                 <div className="ui red message">{authError}</div>
