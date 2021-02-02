@@ -6,7 +6,8 @@ import { Redirect } from "react-router-dom";
 import { addDestination } from "../../actions/index";
 import Form from "./Form";
 import List from "./List";
-import Heading from '../reuscore/Heading'
+import Heading from "../reuscore/Heading";
+import Loader from "../reuscore/Loader";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,11 @@ const Dashboard = () => {
     addDestination(dispatch, value.destination, firestore, profile, auth);
   };
   if (!auth.uid) return <Redirect to="/signin" />;
+
+  if (!profile.firstName) return <Loader />;
   return (
     <div className="ui container">
-      <Heading firstName={profile.firstName}/>
+      <Heading firstName={profile.firstName} />
       <Form onSubmit={handleSubmit} />
       <div className="ui divider"></div>
       <List />
