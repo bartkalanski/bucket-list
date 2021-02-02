@@ -3,80 +3,70 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useFirestore, useFirebase } from "react-redux-firebase";
 
-import { signUp } from '../../actions/index'
+import { signUp } from "../../actions/authActions";
+import Input from "../reuscore/Input";
+import Button from "../reuscore/Button";
+import Error from '../reuscore/Error'
+import Heading from '../reuscore/Heading'
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState({});
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.firebase.auth);
-  const firestore = useFirestore()
-  const firebase = useFirebase()
-  const authError = useSelector((state) => state.authReducer.authError)
-  //console.log('auth',auth)
+  const firestore = useFirestore();
+  const firebase = useFirebase();
+  const authError = useSelector((state) => state.authReducer.authError);
 
-  const handleChange = (e) => {
+  const handleFormValuesChange = (name, value) => {
     setFormValues({
       ...formValues,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    signUp(dispatch, firebase, firestore, formValues)
+    signUp(dispatch, firebase, firestore, formValues);
   };
   if (!auth.uid)
     return (
       <div className="ui container" style={{ marginTop: "10vh" }}>
+        <Heading/>
         <div className="ui segment">
           <form onSubmit={handleSubmit} class="ui form">
-            <div class="field">
-              <label htmlFor="email">E-mail</label>
-              <input
-                onChange={handleChange}
-                type="email"
-                id="email"
-                name="email"
-                placeholder="E-mail"
-              />
-            </div>
-            <div class="field">
-              <label>Password</label>
-              <input
-                onChange={handleChange}
-                type="text"
-                id="password"
-                name="password"
-                placeholder="Password"
-              />
-            </div>
-            <div class="field">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                onChange={handleChange}
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First Name"
-              />
-            </div>
-            <div class="field">
-              <label>Last Name</label>
-              <input
-                onChange={handleChange}
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Last Name"
-              />
-            </div>
-            <button class="ui button" type="submit">
-              Submit
-            </button>
-            <div style={{ marginTop: "1rem" }}>
-              {authError ? (
-                <div className="ui red message">{authError}</div>
-              ) : null}
-            </div>
+            <Input
+              label="E-mail"
+              handleFieldChange={handleFormValuesChange}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="E-mail"
+            />
+            <Input
+              label="Password"
+              handleFieldChange={handleFormValuesChange}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+            />
+            <Input
+              label="First Name"
+              handleFieldChange={handleFormValuesChange}
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="First Name"
+            />
+            <Input
+              label="Last Name"
+              handleFieldChange={handleFormValuesChange}
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+            />
+            <Button className="ui button" type="submit" name="SUBMIT" />
+            <Error err={authError}/>
           </form>
         </div>
       </div>

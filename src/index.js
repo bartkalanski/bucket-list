@@ -13,6 +13,7 @@ import { createFirestoreInstance } from "redux-firestore";
 import App from "./components/App";
 import reducers from "./reducers/index";
 import fbConfig from "./config/fbConfig";
+import Loader from "./components/reuscore/Loader";
 
 const rrfConfig = {
   userProfile: "users",
@@ -27,14 +28,17 @@ const store = createStore(reducers, composeWithDevTools());
 
 const rrfProps = {
   firebase,
-  config: rrfConfig, fbConfig,
+  config: rrfConfig,
+  fbConfig,
   dispatch: store.dispatch,
   createFirestoreInstance,
 };
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector((state) => state.firebase.auth);
-  if (!isLoaded(auth)) return <div>Loading...</div>;
+  if (!isLoaded(auth)) {
+    return <Loader />;
+  }
   return children;
 }
 

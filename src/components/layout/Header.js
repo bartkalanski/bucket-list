@@ -4,7 +4,7 @@ import { useFirebase } from "react-redux-firebase";
 
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
-import { signOut } from "../../actions/index";
+import { signOut } from "../../actions/authActions";
 
 const Header = () => {
   const auth = useSelector((state) => state.firebase.auth);
@@ -16,22 +16,18 @@ const Header = () => {
     if (e) signOut(dispatch, firebase);
   };
   const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
+  const userInitials = profile.initials ? (
+    <div className="circular ui icon button">{profile.initials}</div>
+  ) : null;
   return (
     <div className="ui container">
-      <div class="ui secondary pointing menu">
+      <div className="ui secondary pointing menu">
         {links}
-        <div class="right menu">
-          {profile.initials ? (
-            <button
-              class="circular ui icon button"
-              style={{ height: "90%", width: "90%", alignSelf: "center" }}
-            >
-              {profile.initials}
-            </button>
-          ) : null}
-          <a onClick={handleSignOut} class="ui item">
+        <div className="right menu" style={{ margin: "1px" }}>
+          {userInitials}
+          <button onClick={handleSignOut} type="button" className="ui item">
             {auth.uid ? "Logout" : "Login"}
-          </a>
+          </button>
         </div>
       </div>
     </div>
