@@ -4,7 +4,7 @@ import { useFirebase } from "react-redux-firebase";
 
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
-import { signOut } from "../../actions/index";
+import { signOut } from "../../actions/authActions";
 
 const Header = () => {
   const auth = useSelector((state) => state.firebase.auth);

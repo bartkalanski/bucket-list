@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { useFirestore, useFirebase } from "react-redux-firebase";
 
-import { signUp } from '../../actions/index'
+import { signUp } from '../../actions/authActions'
+import Input from '../reuscore/Input'
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState({});
@@ -12,7 +13,6 @@ const SignUp = () => {
   const firestore = useFirestore()
   const firebase = useFirebase()
   const authError = useSelector((state) => state.authReducer.authError)
-  //console.log('auth',auth)
 
   const handleChange = (e) => {
     setFormValues({
