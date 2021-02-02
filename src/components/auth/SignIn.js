@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { signIn } from "../../actions/authActions";
 import Input from "../reuscore/Input";
 import Button from "../reuscore/Button";
+import Error from "../reuscore/Error"
 
 const SignIn = () => {
   const [formValues, setFormValues] = useState({});
@@ -48,11 +49,7 @@ const SignIn = () => {
               placeholder="Password"
             />
             <Button className="ui button" type="submit" name="LOGIN" />
-            <div style={{ marginTop: "1rem" }}>
-              {authError ? (
-                <div className="ui red message">{authError}</div>
-              ) : null}
-            </div>
+            <Error err={authError}/>
           </form>
         </div>
       </div>
