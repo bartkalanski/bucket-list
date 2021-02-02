@@ -7,6 +7,7 @@ import { signUp } from "../../actions/authActions";
 import Input from "../reuscore/Input";
 import Button from "../reuscore/Button";
 import Error from '../reuscore/Error'
+import Heading from '../reuscore/Heading'
 
 const SignUp = () => {
   const [formValues, setFormValues] = useState({});
@@ -29,6 +30,7 @@ const SignUp = () => {
   if (!auth.uid)
     return (
       <div className="ui container" style={{ marginTop: "10vh" }}>
+        <Heading/>
         <div className="ui segment">
           <form onSubmit={handleSubmit} class="ui form">
             <Input
