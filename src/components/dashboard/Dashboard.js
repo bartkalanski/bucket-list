@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 import { addDestination } from "../../actions/index";
 import Form from "./Form";
-import List from "./List";
+import Results from "./Results";
 import Heading from "../reuscore/Heading";
 import Loader from "../reuscore/Loader";
 
@@ -14,7 +14,7 @@ const Dashboard = () => {
   const firestore = useFirestore();
   const auth = useSelector((state) => state.firebase.auth);
   const profile = useSelector((state) => state.firebase.profile);
-
+  //const state = useSelector((state) => console.log('state', state))
   const handleSubmit = (value) => {
     if (!value.destination) {
       return;
@@ -29,7 +29,7 @@ const Dashboard = () => {
       <Heading firstName={profile.firstName} />
       <Form onSubmit={handleSubmit} />
       <div className="ui divider"></div>
-      <List />
+      <Results />
     </div>
   );
 };

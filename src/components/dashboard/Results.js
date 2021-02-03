@@ -5,7 +5,7 @@ import { useFirestore, useFirestoreConnect } from "react-redux-firebase";
 import { removeDestination } from "../../actions/index";
 import DisplayResults from "./DisplayResults";
 
-const List = () => {
+const Results = () => {
   const dispatch = useDispatch();
   const firestore = useFirestore();
   const authUID = useSelector((state) => state.firebase.auth.uid);
@@ -49,4 +49,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Results;

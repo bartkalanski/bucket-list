@@ -8,10 +8,7 @@ import App from "../components/App";
 
 describe("App", () => {
   const state = {
-    destinationReducer: {
-      destination: "Krakow",
-    },
-    form: "Krakow",
+
   };
   const mockStore = createStore(rootReducer, state);
   const getWrapper = () =>
@@ -23,12 +20,5 @@ describe("App", () => {
   it("should render without throwing an error", () => {
     const wrapper = getWrapper(mockStore);
     expect(wrapper).not.toBeNull();
-  });
-  it("should dispatch on form submit", () => {
-    mockStore.dispatch = jest.fn();
-
-    const wrapper = getWrapper(mockStore);
-    wrapper.find("Form").simulate("submit");
-    expect(mockStore.dispatch).toHaveBeenCalled();
   });
 });
