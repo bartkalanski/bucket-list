@@ -3,18 +3,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFirestore, useFirestoreConnect } from "react-redux-firebase";
 
 import { removeDestination } from "../../actions/index";
+import DisplayResults from "./DisplayResults";
 
 const List = () => {
   const dispatch = useDispatch();
   const firestore = useFirestore();
   const authUID = useSelector((state) => state.firebase.auth.uid);
+  const destinations = useSelector((state) => state.firestore.data.list);
+  let results;
 
   useFirestoreConnect({
     collection: `/list`,
     storeAs: "list",
   });
 
-  const destinations = useSelector((state) => state.firestore.data.list);
+  if (destinations) {
+    results = Object.values(destinations).filter((file) => {
+      if (file) return file.authorId === authUID;
+      return "";
+    });
+  }
 
   const onButtonClick = (event) => {
     event.preventDefault();
@@ -25,39 +33,20 @@ const List = () => {
       event.target.dataset.key
     );
   };
-  if (destinations) {
-    return (
-      <React.Fragment>
-        {Object.values(destinations)
-          .filter((file) => {
-            if (file) return file.authorId === authUID;
-            return "";
-          })
-          .map((file, index) => {
-            return (
-              <div key={index} className="ui middle aligned divided list">
-                <div className="item">
-                  <div className="right floated content">
-                    <button
-                      onClick={onButtonClick}
-                      id={index}
-                      data-key={file.documentID}
-                      className="ui red button"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                  <div className="ui header">
-                    {index + 1}. {file.destination}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-      </React.Fragment>
-    );
-  }
-  return <div></div>;
+  if (!results) return <div />;
+  return (
+    <React.Fragment>
+      {results.map((file, index) => {
+        return (
+          <DisplayResults
+            index={index}
+            file={file}
+            handleButtonClick={onButtonClick}
+          />
+        );
+      })}
+    </React.Fragment>
+  );
 };
 
 export default List;
