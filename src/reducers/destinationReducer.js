@@ -1,14 +1,6 @@
 import { ADD_DESTINATION, REMOVE_DESTINATION } from "../actions/types";
 
-const initState = {
-  destinations: [
-    { destination: "Peru" },
-    { destination: "Philippines" },
-    { destination: "India" },
-  ],
-};
-
-const destinationReducer = (state = initState, { type, payload, err }) => {
+const destinationReducer = (state =  {}, { type, payload, err }) => {
   switch (type) {
     case ADD_DESTINATION:
       return {
