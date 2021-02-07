@@ -1,6 +1,6 @@
 import destinationReducer from "../reducers/destinationReducer";
 
-describe("basketReducer", () => {
+describe("destinationReducer", () => {
   let initState = {
     destinations: [
       { destination: "Peru" },
@@ -8,12 +8,10 @@ describe("basketReducer", () => {
       { destination: "India" },
     ],
   };
-  xit("has a default state", () => {
-    expect(destinationReducer(undefined, { type: "unexpected" })).toEqual(
-      {}
-    );
+  it("has a default state", () => {
+    expect(destinationReducer(undefined, { type: "unexpected" })).toEqual({});
   });
-  xit("can handle ADD_DESTINATION", () => {
+  it("can handle ADD_DESTINATION", () => {
     expect(
       destinationReducer(initState, {
         type: "ADD_DESTINATION",
@@ -28,7 +26,15 @@ describe("basketReducer", () => {
       ],
     });
   });
-  xit("can handle REMOVE_DESTINATION", () => {
+  it("can handle ADD_DESTINATION ERROR", () => {
+    expect(
+      destinationReducer(initState, {
+        type: "ADD_DESTINATION_ERROR",
+        payload: "Krakow",
+      })
+    ).toEqual(initState);
+  });
+  it("can handle REMOVE_DESTINATION", () => {
     expect(
       destinationReducer(initState, { type: "REMOVE_DESTINATION", payload: 2 })
     ).toEqual({

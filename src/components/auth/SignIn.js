@@ -24,7 +24,6 @@ const SignIn = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
     signIn(dispatch, firebase, formValues.email, formValues.password);
   };
 

@@ -55,7 +55,9 @@ describe("Dashboard", () => {
             timestamps: {},
           },
         },
-        form: {},
+        form: {
+          destination: 'Bolivia'
+        },
       };
   const mockStore = createStore(rootReducer, state);
   const getWrapper = () =>
