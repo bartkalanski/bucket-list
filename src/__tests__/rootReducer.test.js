@@ -5,7 +5,6 @@ describe("rootReducer", () => {
     authReducer: {
       authError: null,
     },
-    destinationReducer: {},
     firebase: {
       auth: {
         isEmpty: true,

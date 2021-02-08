@@ -4,14 +4,12 @@ import { firebaseReducer } from "react-redux-firebase";
 import { firestoreReducer } from "redux-firestore";
 
 import authReducer from "./authReducer";
-import destinationReducer from "./destinationReducer";
 import { ADD_DESTINATION } from "../actions/types";
 
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
   authReducer: authReducer,
-  destinationReducer: destinationReducer,
   form: formReducer.plugin({
     destinationForm: (state, action) => {
       // <------ 'destinationForm' is name of form given to reduxForm()
