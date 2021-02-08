@@ -1,4 +1,4 @@
-import authReducer from "./authReducer";
+import authReducer from "../reducers/authReducer";
 
 describe("destinationReducer", () => {
   const initState = {

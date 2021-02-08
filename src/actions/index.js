@@ -1,6 +1,7 @@
 import {
   ADD_DESTINATION,
   REMOVE_DESTINATION,
+  ADD_DESTINATION_ERROR,
 } from "./types";
 
 export const addDestination = (dispatch, value, firestore, profile, auth) => {
@@ -11,7 +12,7 @@ export const addDestination = (dispatch, value, firestore, profile, auth) => {
       authorFirstName: profile.firstName,
       authorLastName: profile.lastName,
       authorId: auth.uid,
-      createdAt: new Date()
+      createdAt: new Date(),
     })
     .then((docRef) => {
       docRef.update({
@@ -22,7 +23,7 @@ export const addDestination = (dispatch, value, firestore, profile, auth) => {
       dispatch({ type: ADD_DESTINATION, payload: value });
     })
     .catch((err) => {
-      dispatch({ type: "ADD_DESTINATION_ERROR", err });
+      dispatch({ type: ADD_DESTINATION_ERROR, err });
     });
 };
 export const removeDestination = (dispatch, firestore, value, id) => {

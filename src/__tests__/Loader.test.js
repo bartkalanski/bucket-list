@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Loader from "./Loader";
+import Loader from "../components/reuscore/Loader";
 
 describe("Loader", () => {
   const wrapper = shallow (<Loader/>)

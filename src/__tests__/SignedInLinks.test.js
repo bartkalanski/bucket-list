@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import Button from "./Button";
+import SignedInLinks from "../components/layout/SignedInLinks";
 
-describe("Loader", () => {
-  const wrapper = shallow (<Button />)
+describe("SignedInLinks", () => {
+  const wrapper = shallow (<SignedInLinks />)
   it("should render without throwing an error", () => {
     expect(wrapper).not.toBeNull();
   });

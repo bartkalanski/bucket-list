@@ -12,7 +12,6 @@ describe("Dashboard", () => {
         authReducer: {
           authError: null,
         },
-        destinationReducer: {},
         firebase: {
           auth: {
             isEmpty: true,
