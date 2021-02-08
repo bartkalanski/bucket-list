@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import SignedInLinks from "./SignedInLinks";
+import SignedInLinks from "../components/layout/SignedInLinks";
 
 describe("SignedInLinks", () => {
   const wrapper = shallow (<SignedInLinks />)

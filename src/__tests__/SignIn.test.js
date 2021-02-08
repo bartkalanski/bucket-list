@@ -4,16 +4,16 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { BrowserRouter } from "react-router-dom";
 
-import rootReducer from "../../reducers/index";
-import SignUp from "./SignUp";
+import rootReducer from "../reducers/index";
+import SignIn from "../components/auth/SignIn";
 
-describe("SignUp - logged out", () => {
+describe("SignIn - logged out", () => {
   const state = {};
   const mockStore = createStore(rootReducer, state);
   const getWrapper = () =>
     mount(
       <Provider store={mockStore}>
-        <SignUp />
+        <SignIn />
       </Provider>
     );
 
@@ -34,7 +34,7 @@ describe("SignUp - logged out", () => {
     expect(mockStore.dispatch).toHaveBeenCalledTimes(1);
   });
 });
-describe("SignUp - logged in", () => {
+describe("SignIn - logged in", () => {
   const state = {
     firebase: {
       auth: {
@@ -47,7 +47,7 @@ describe("SignUp - logged in", () => {
     mount(
       <Provider store={mockStore}>
         <BrowserRouter>
-          <SignUp />
+          <SignIn />
         </BrowserRouter>
       </Provider>
     );
